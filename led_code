@@ -1,0 +1,39 @@
+#include <Adafruit_NeoPixel.h>
+
+#define LED_PIN 2;
+#define NUM_LEDS 240;
+
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+
+// Function prototype
+void colorWipe(Adafruit_NeoPixel &strip, uint32_t color, int wait);
+
+void setup() {
+  strip.begin();
+  strip.show();
+}
+
+void loop() {
+  colorWipe(strip, strip.Color(255, 0, 0), 50); // Red
+  delay(50);
+  colorWipe(strip, strip.Color(0, 255, 0), 50); // Green
+  delay(50);
+  colorWipe(strip, strip.Color(0, 0, 255), 50); // Blue
+  delay(50);
+
+  colorWipe(strip, strip.Color(255, 255, 0), 50); // Yellow
+  delay(50);
+  colorWipe(strip, strip.Color(255, 0, 255), 50); // Purple
+  delay(50);
+  colorWipe(strip, strip.Color(0, 255, 255), 50); // Cyan
+  delay(50);
+}
+
+void colorWipe(Adafruit_NeoPixel &strip, uint32_t color, int wait) {
+  for(int i = 0; i < strip.numPixels(); i++) {
+    strip.setPixelColor(i, color);
+    strip.show();
+    delay(wait);
+  }
+}
